@@ -1,26 +1,27 @@
 
 #singleinstance,force
+SetNumlockState, AlwaysOn ;Lock Numpad to on since numpad off has different keymappings, e.g 1 is mapped to end, 3 is mapped to PgDn
 
-SetNumlockState, AlwaysOn
-profiles := ["white","blue", "teal","green"]
-profile0 = "white"
-profile1 = "blue"
-profile2 = "green"
-state = 0
-Run, python.exe ChangeNumpadColor.py white,,Hide
-colour = % profile%state% 
+; Set Profile Names here. There are usually saved in appdata/Roaming/OpenRGB as .orp files. 
+; Below are pseduo hashtables/Arrays since AutoHotkey does not seem to support the real thing
+profile0 = "numpad white"
+profile1 = "numpad blue"
+; profile2 = "numpad green"
+
+
+state = 0 ; sate keep track of which profile we are on 
+cur_profile = % profile%state% ; This is how psuedo array is accessed
+Run, python.exe ChangeKeyboardProfile.py %cur_profile% ,,Hide ; pass profiled name wanted into python program
+
 return
-; MsgBox %colour%
-; Run, python.exe ChangeNumpadColor.py %colour% ,,Hide
 NumLock::
-; MsgBox % profile%state%
+
     state += 1
-    if (state > 2){
+    if (state > 1){
         state = 0
     } 
-    colour =  % profile%state% 
-    ; MsgBox  state %colour%
-    Run, python.exe ChangeNumpadColor.py %colour% ,,Hide
+    cur_profile =  % profile%state% 
+    Run, python.exe ChangeKeyboardProfile.py %cur_profile% ,,Hide
     return
 
 Numpad1::
