@@ -1,0 +1,1 @@
+Small script used for mapping macrolayers to the numpad. Use OpenRGB-SDK to change profiles on the keyboard
