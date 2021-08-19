@@ -4,3 +4,9 @@ Requires
 - OpenRBG-Python by jath03
 - Autohotkey
 - OpenRBG profiles setup
+
+
+Todo:
+- make the profile update only update the keypad
+- allow for more complex, multiline macros
+
